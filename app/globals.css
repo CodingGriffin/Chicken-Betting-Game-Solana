@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base { 
+  body {
+    @apply bg-base font-default p-5;
+  }
+  
+  .game {
+    @apply h-[519px] bg-gray/40;
+  }
+  
+  .settings-pane {
+  }
+  .settings-pane .tabs {
+    @apply bg-light p-5;
+  }
+  
+  .settings-pane .header {
+    @apply flex items-center justify-between;
+  }
+  
+  .settings-pane .tabs .form {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5;
+  }
+  
+  .settings-pane .tabs .form .input-field {
+    @apply flex flex-col gap-2;
+  }
+  
+  .input-field .input-container {
+    @apply border-2 border-dark p-2 flex gap-2 items-center rounded-md;
+  }
+  
+  .input-field .input-container input {
+    @apply flex-1 bg-transparent text-xl focus:outline-none;
+  }
+  
+  .input-container .input-options {
+    @apply flex gap-2 flex-1;
+  }
+  
+  .input-container .input-options button {
+    @apply p-1 bg-gray rounded-md px-2 flex-1;
+  }
+  
+  .input-container .input-options button.active {
+    @apply bg-dark text-white;
+  }
+  
+  .start-button {
+    @apply p-3 bg-dark text-white rounded-md text-xl;
+  }
+  
+  .tab-bar {
+    @apply flex;
+  }
+  
+  .tab-bar .tab-bar-item {
+    @apply p-3 px-6 hover:bg-gray/40 transition-colors cursor-pointer;
+  }
+  
+  .tab-bar .tab-bar-item.active {
+    @apply border-b-2 border-dark;
+  }
+  
+  .game {
+    @apply overflow-hidden p-1 bg-dark;
+  }
+  
+  .game .start {
+    @apply w-[201px] bg-gray h-full;
+    min-width: 201px;
+    max-width: 201px;
+  }
+  
+  .game .road {
+    @apply w-[201px] bg-road  h-full justify-center flex items-center;
+    position: relative;
+    min-width: 201px;
+    max-width: 201px;
+  }
+  
+  .road:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0%;
+    width: 6px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      #c7c7c7cc,
+      #c7c7c7cc 30px,
+      transparent 30px,
+      transparent 50px
+    );
+  }
+  
+  .road .star {
+    @apply z-20 shadow-lg rounded-full;
+  }
+  
+  .road.crossed .star {
+    @apply block;
+  }
+  
+  .road .tile {
+    @apply translate-y-1/2 relative;
+  }
+  
+  .road .tile .multiple-container {
+    @apply shadow-lg rounded-full relative;
+  }
+  
+  .road .tile img {
+    @apply size-28;
+  }
+  
+  .road .brick {
+    @apply absolute -translate-y-full hidden;
+  }
+  
+  .road .multiple {
+    @apply absolute top-[105px] left-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl text-light z-10;
+  }
+  
+  .road-container {
+    width: 400vw;
+    @apply flex h-full relative w-full;
+    transition: left 0.3s ease, top 0.3s ease; /* Smooth transition */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+  }
+  
+  .character {
+    @apply flex flex-col absolute top-1/2 -translate-y-1/2 z-40 left-0 gap-2 items-center;
+    transition: left 0.3s ease, top 0.3s ease; /* Smooth transition */
+  }
+  
+  .character .counter img {
+    @apply w-32;
+  }
+  
+  .character .counter .counter-text {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4;
+  }
+  
+  .character .counter {
+    @apply translate-x-8 translate-y-4 relative;
+  }
+  
+  .character .main-character {
+    @apply size-44;
+    min-width: 11rem;
+    min-height: 11rem;
+  }
+  
+  .car {
+    @apply absolute size-48 z-50;
+  }
+
+  @font-face {
+    font-family: "IaCartoonerie";
+    src: url("./fonts/laCartoonerie.TTF");
+    font-weight: normal;
+    font-kerning: normal;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 18px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #0a4c8f;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  .wallet-adapter-dropdown {
+    background-image: url('/images/buttons/connect_wallet.svg');
+    background-size: cover;
+    width: 200px;
+    height: 56px;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+  }
+  
+  .wallet-adapter-dropdown-list {
+    font-family: LilitaOne;
+    width: 200px;
+    z-index: 20;
+  }
+  
+  .wallet-adapter-dropdown-list-item {
+    font-size: 16px;
+  }
+  
+  .wallet-adapter-button:not([disabled]):hover {
+    background: transparent;
+  }
+  
+  .wallet-adapter-button {
+    text-transform: uppercase;
+    text-shadow: 0 1px black;
+    -webkit-text-stroke: 1px black;
+    font-family: LilitaOne;
+    font-size: 20px;
+    height: 56px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .modal-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* .pork-background {
+    background-image: url('/images/background.svg');
+    background-size: cover;
+    min-height: 100vh;
+    position: fixed;
+    width: 100vw;
+    z-index: -1;
+  } */
+  
+  @font-face {
+    font-family: 'LilitaOne';
+    src: url('/fonts/LilitaOne_Regular.ttf');
+  }
+  
+  .font-lilitaone {
+    font-family: LilitaOne;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 4px black;
+    -webkit-text-stroke: 1px black;
+  }
+  
+  .text-shadow-sm {
+    text-shadow: 0 1px black;
+    -webkit-text-stroke: 1px black;
+  }
+}
